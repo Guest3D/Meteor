@@ -1,0 +1,350 @@
+-- Gui to Lua
+-- Version: 3.2
+
+-- Instances:
+
+local Meteor = Instance.new("ScreenGui")
+local Frame = Instance.new("Frame")
+local ScrollingFrame = Instance.new("ScrollingFrame")
+local UIListLayout = Instance.new("UIListLayout")
+local TextLabel = Instance.new("TextLabel")
+local Log = Instance.new("Frame")
+local ScrollingFrame_2 = Instance.new("ScrollingFrame")
+local UIListLayout_2 = Instance.new("UIListLayout")
+
+--Properties:
+
+Meteor.Name = "Meteor"
+Meteor.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+Meteor.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+
+Frame.Parent = Meteor
+Frame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Frame.BackgroundTransparency = 1.000
+Frame.Size = UDim2.new(0, 100, 0, 500)
+
+ScrollingFrame.Parent = Frame
+ScrollingFrame.Active = true
+ScrollingFrame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+ScrollingFrame.BackgroundTransparency = 1.000
+ScrollingFrame.Position = UDim2.new(0, 0, 0.0599999987, 0)
+ScrollingFrame.Size = UDim2.new(0, 100, 0, 470)
+ScrollingFrame.CanvasSize = UDim2.new(0, 0, 0, 0)
+ScrollingFrame.ScrollBarThickness = 0
+
+UIListLayout.Parent = ScrollingFrame
+UIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
+
+TextLabel.Parent = Frame
+TextLabel.BackgroundColor3 = Color3.fromRGB(170, 85, 255)
+TextLabel.BorderSizePixel = 0
+TextLabel.Size = UDim2.new(0, 100, 0, 30)
+TextLabel.Font = Enum.Font.SourceSans
+TextLabel.Text = "Meteor"
+TextLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+TextLabel.TextScaled = true
+TextLabel.TextSize = 14.000
+TextLabel.TextWrapped = true
+
+Log.Name = "Log"
+Log.Parent = Meteor
+Log.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Log.BackgroundTransparency = 1.000
+Log.Position = UDim2.new(0.904942989, 0, 0, 0)
+Log.Size = UDim2.new(0, 100, 0, 500)
+
+ScrollingFrame_2.Parent = Log
+ScrollingFrame_2.Active = true
+ScrollingFrame_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+ScrollingFrame_2.BackgroundTransparency = 1.000
+ScrollingFrame_2.Position = UDim2.new(0, 0, 0.00199993886, 0)
+ScrollingFrame_2.Size = UDim2.new(0, 100, 0, 499)
+ScrollingFrame_2.CanvasSize = UDim2.new(0, 0, 0, 0)
+ScrollingFrame_2.ScrollBarThickness = 0
+
+UIListLayout_2.Parent = ScrollingFrame_2
+UIListLayout_2.SortOrder = Enum.SortOrder.LayoutOrder
+
+-- Scripts:
+
+local function SDSMDUC_fake_script() -- Meteor.LocalScript 
+	local script = Instance.new('LocalScript', Meteor)
+
+	Frame = script.Parent.Frame.ScrollingFrame
+	Log = script.Parent.Log.ScrollingFrame
+	local function CreateButton(text, callback)
+		local enabled = false
+		callback = callback or function ()end
+		-- Gui to Lua
+		-- Version: 3.2
+	
+		-- Instances:
+	
+		local Button = Instance.new("TextButton")
+	
+		--Properties:
+	
+		Button.Name = "Button"
+		Button.Parent = Frame
+		Button.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+		Button.Position = UDim2.new(0, 0, 0.0599999987, 0)
+		Button.Size = UDim2.new(0, 100, 0, 30)
+		Button.Font = Enum.Font.SourceSans
+		Button.TextColor3 = Color3.fromRGB(255, 255, 255)
+		Button.TextScaled = true
+		Button.TextSize = 14.000
+		Button.TextWrapped = true
+		Button.Text = text
+		Button.BorderSizePixel = "0"
+		-- Gui to Lua
+		-- Version: 3.2
+	
+		-- Instances:
+	
+		local TextLabel = Instance.new("TextLabel")
+	
+		--Properties:
+	
+		TextLabel.Parent = Button
+		TextLabel.BackgroundColor3 = Color3.fromRGB(170, 85, 255)
+		TextLabel.Size = UDim2.new(0, 6, 0, 30)
+		TextLabel.Font = Enum.Font.SourceSans
+		TextLabel.Text = ""
+		TextLabel.TextColor3 = Color3.fromRGB(0, 0, 0)
+		TextLabel.TextSize = 14.000
+		TextLabel.Visible = false
+		TextLabel.BorderSizePixel = "0"
+		
+		-- Gui to Lua
+		-- Version: 3.2
+	
+		-- Instances:
+	
+		local Label = Instance.new("TextLabel")
+	
+		--Properties:
+	
+		Label.Name = "Label"
+		Label.Parent = Log
+		Label.BackgroundColor3 = Color3.fromRGB(170, 85, 255)
+		Label.BackgroundTransparency = 1.000
+		Label.BorderSizePixel = 0
+		Label.Size = UDim2.new(0, 100, 0, 30)
+		Label.Font = Enum.Font.SourceSans
+		Label.TextColor3 = Color3.fromRGB(170, 85, 255)
+		Label.TextScaled = true
+		Label.TextSize = 14.000
+		Label.TextWrapped = true
+		Label.TextXAlignment = Enum.TextXAlignment.Right
+		Label.Text = text
+		Label.Visible = false
+		
+		local function Fire()
+			enabled = not enabled
+			TextLabel.Visible = enabled and true or false
+			Label.Visible = enabled and true or false
+			pcall(callback, enabled)
+	
+		end
+		
+		Button.MouseButton1Click:Connect(Fire)
+		
+	end
+	
+	CreateButton("High Jump", function(state)
+		if state then
+		game.Players.LocalPlayer.Character.Humanoid.JumpPower = 100	
+		else
+			game.Players.LocalPlayer.Character.Humanoid.JumpPower = 50	
+		end
+	end)
+	
+	CreateButton("Fast Walk", function(state)
+		if state then
+			game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 100	
+		else
+			game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 16	
+		end
+	end)
+	
+	CreateButton("AutoWalk + FreeLook", function(state)
+		_G.Enabled = false
+		
+		if state then
+		_G.Enabled = true	
+		else
+			_G.Enabled = false
+		end	
+		
+		while _G.Enabled do
+			local humanoidRootPart = game.Players.LocalPlayer.Character.HumanoidRootPart
+			local targetPosition = humanoidRootPart.Position + humanoidRootPart.CFrame.lookVector * 2
+	
+			game.Players.LocalPlayer.Character.Humanoid:MoveTo(targetPosition)
+	
+			wait()
+		end
+	
+	end)
+	
+	local InfiniteJumpEnabled;
+	CreateButton("Inf Jump", function(state)
+		InfiniteJumpEnabled = state
+	end)
+	
+	local Player = game:GetService("Players").LocalPlayer
+	game:GetService("UserInputService").JumpRequest:Connect(function()
+		if InfiniteJumpEnabled then
+			Player.Character:WaitForChild("Humanoid"):ChangeState("Jumping")
+		end
+	end)
+	
+	local speaker = game.Players.LocalPlayer
+	
+	CreateButton("Swim", function(state)
+		if state then
+			game.Workspace.Gravity = 0
+			speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Climbing,false)
+			speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.FallingDown,false)
+			speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Flying,false)
+			speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Freefall,false)
+			speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.GettingUp,false)
+			speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Jumping,false)
+			speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Landed,false)
+			speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Physics,false)
+			speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.PlatformStanding,false)
+			speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Ragdoll,false)
+			speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Running,false)
+			speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.RunningNoPhysics,false)
+			speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Seated,false)
+			speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.StrafingNoPhysics,false)
+			speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Swimming,false)
+			speaker.Character.Humanoid:ChangeState(Enum.HumanoidStateType.Swimming)
+		else
+			game.Workspace.Gravity = 168
+			speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Climbing,true)
+			speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.FallingDown,true)
+			speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Flying,true)
+			speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Freefall,true)
+			speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.GettingUp,true)
+			speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Jumping,true)
+			speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Landed,true)
+			speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Physics,true)
+			speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.PlatformStanding,true)
+			speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Ragdoll,true)
+			speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Running,true)
+			speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.RunningNoPhysics,true)
+			speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Seated,true)
+			speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.StrafingNoPhysics,true)
+			speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Swimming,true)
+			speaker.Character.Humanoid:ChangeState(Enum.HumanoidStateType.RunningNoPhysics)
+		end
+	end)
+	
+	CreateButton("AutoJump", function(state)
+		_G.Jump = false	
+		
+		if state then
+			_G.Jump = true
+		else
+			_G.Jump = false
+		end
+		
+		while _G.Jump and wait() do
+			speaker.Character.Humanoid.Jump = true
+		end
+	end)
+	
+	CreateButton("Fullbright", function(state)
+		if state then
+			game:GetService("Lighting").Brightness = 2
+			game:GetService("Lighting").ClockTime = 14
+			game:GetService("Lighting").FogEnd = 100000
+			game:GetService("Lighting").GlobalShadows = false
+			game:GetService("Lighting").OutdoorAmbient = Color3.fromRGB(128, 128, 128)
+		end
+	end)
+	
+	CreateButton("NightVision", function(state)
+		local effect = Instance.new("ColorCorrectionEffect", game.Lighting)
+		effect.Brightness = 0.5
+		effect.TintColor = Color3.fromRGB(0,189,0)
+		effect.Enabled = false
+		
+		if state then
+			game.Lighting.ColorCorrection.Enabled = true
+			script.Parent.BackgroundColor3 = Color3.fromRGB(0,0,0)
+		else
+			game.Lighting.ColorCorrection.Enabled = false
+			script.Parent.BackgroundColor3 = Color3.fromRGB(0,0,0)
+		end
+	end)
+	
+	CreateButton("Xray", function(state)
+		if state then										
+			for i, descendant in pairs(workspace:GetDescendants()) do
+				if descendant:IsA("BasePart") then	
+					if not descendant:FindFirstChild("OriginalTransparency") then
+						local originalTransparency = Instance.new("NumberValue")
+						originalTransparency.Name = "OriginalTransparency"
+						originalTransparency.Value = descendant.Transparency
+						originalTransparency.Parent = descendant
+					end
+					descendant.Transparency = 0.5
+				end
+			end
+		else					
+			for i, descendant in pairs(workspace:GetDescendants()) do
+				if descendant:IsA("BasePart") then	
+					descendant.Transparency = descendant.OriginalTransparency.Value
+				end
+			end
+		end
+	end)
+end
+coroutine.wrap(SDSMDUC_fake_script)()
+local function MGHVNSQ_fake_script() -- Frame.LocalScript 
+	local script = Instance.new('LocalScript', Frame)
+
+	local UserInputService = game:GetService("UserInputService")
+		
+		local gui = script.Parent
+		
+		local dragging
+		local dragInput
+		local dragStart
+		local startPos
+		
+		local function update(input)
+			local delta = input.Position - dragStart
+			gui.Position = UDim2.new(startPos.X.Scale, startPos.X.Offset + delta.X, startPos.Y.Scale, startPos.Y.Offset + delta.Y)
+		end
+		
+		gui.InputBegan:Connect(function(input)
+			if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
+				dragging = true
+				dragStart = input.Position
+				startPos = gui.Position
+		
+				input.Changed:Connect(function()
+					if input.UserInputState == Enum.UserInputState.End then
+						dragging = false
+					end
+				end)
+			end
+		end)
+		
+		gui.InputChanged:Connect(function(input)
+			if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then
+				dragInput = input
+			end
+		end)
+		
+		UserInputService.InputChanged:Connect(function(input)
+			if input == dragInput and dragging then
+				update(input)
+			end
+		end)
+	
+end
+coroutine.wrap(MGHVNSQ_fake_script)()
